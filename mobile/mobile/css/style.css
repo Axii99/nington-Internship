@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* CSS Document */
+
+.button { display:inline-block; *display:inline; *zoom:1; vertical-align:middle; padding:0 15px; height:26px; line-height:26px; color:#fff;}
+.button.green { background:#009852;}
+.button.green:hover { background:#11a963;}
+.button.green:active { background:#008741;}
+.button.gray { background:#eee; color:#333; height:24px; line-height:24px; padding:0 14px; border:1px solid #aaa;}
+.button.gray:hover { background:#fff;}
+.button.gray:active { background:#ddd;}
+.button.blue { background:#0070bc;}
+.button.blue:hover { background:#1c94e2;}
+.button.blue:active { background:#127cc2;}
+/*自动登录页面样式设置*/
+button.radiusBtn{ width:14em; height: 14em; border-radius: 7em; background-color: #3399ff; border:#3399ff;-webkit-box-shadow:inset .35em .35em 2em rgba(0,0,0,.75); -moz-box-shadow:inset .35em .35em 2em rgba(0,0,0,.75);box-shadow: inset .35em .35em 2em rgba(0,0,0,.75);}
+button.radiusBtn:active{box-shadow: inset -.35em -.35em 2em rgba(0,0,0,.75);}
+.noborder{ border:none;}
+
+/* 编辑区 */
+.editArea { position:relative; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.editArea .edit { display:none; background:url(../images/shadow_bg.png) repeat; position:absolute; top:0; left:0; width:100%; height:1.4em; z-index:2;}
+.editArea.logo .img-select { left:0;}
+.editable { border:1px dashed #999; margin:0;}
+.editable .edit { display:block;}
+.editable .edit > h6 { line-height:1.2em; background:url(../images/edit_ico.png) no-repeat right center; margin:0 10px; text-align:right;}
+.editable .edit > h6 > a { color:#fff; font-size:.7em; padding-right:20px;}
+.editable .edit > h6 > a:hover { color:#fff; text-decoration:underline;}
+.editBox { display:none;}
+.editBox { font-size:12px;}
+
+
+	/* 图片编辑 */
+.img-select { width:540px; border:1px solid #999; background:#fff; position:absolute; right:30px; top:30px; z-index:3;}
+.img-list { height:250px; overflow-y:auto; overflow-x:hidden; _overflow:auto;}
+.img-list > ul { width:520px; padding:0 0 10px 20px; overflow:hidden;}
+.img-list > ul > li { width:100px; height:100px; border:1px solid #aaa; text-align:center; float:left; margin:20px 20px 0 0; _display:inline; cursor:pointer;}
+.img-list > ul > li:hover, .img-list > ul > li.on { border-color:#f00;}
+.img-list > ul > li img { max-width:100px; max-height:100px;}
+.img-control { height:26px; border-top:1px solid #999; padding:7px 10px; overflow:hidden;}
+.img-control .file { position:relative; display:inline-block; *display:inline; *zoom:1; vertical-align:middle;}
+.img-control .file > input[type='text'] { width:118px; height:24px; border:1px solid #aaa;}
+.img-control .file > a { margin-left:5px;}
+.img-control .file > input[type='file'] { width:215px; height:26px; filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity:0; opacity:0; position:absolute; top:0; left:0; cursor:pointer;}
+.img-control .button.green { margin:0 5px;}
+.img-control > .fyy-fr > .green { margin-left:10px;}
+.cancel:hover { text-decoration:underline;}
+
+#bg{ display: none;  position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.6;  opacity:.70;  filter: alpha(opacity=70);}
+#showPasswordDiv{display: none;  position: absolute;  top: 10%;  left: 7%;  width:80%;  height: 250px;  padding: 8px;  border: 4px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}
+#passwordRemindDiv{display: none;  position: absolute;  top: 10%;  left: 7%;  width:80%;  height: 250px;  padding: 8px;  border: 4px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}
+#sv-visitorApply { display:block; float:right;margin-top: 0.5em;font-size: 1.2em;overflow: hidden;color: #0b82d0;text-decoration: underline;}
+#closeBtn,#closeShowPwdBtn{float: right;width:25px;height:28px;background-color:#AAA;color:#FFF;display:block;border: 0;cursor:pointer;}
+#warning{margin: 2em;text-align: center;}
+	/* 文字编辑 */
+.text-edit { width:100%; background:#fff; position:absolute; right:0; top:30px; z-index:3; min-width:140px;}
+.text-input { border:1px solid #999; padding:10px;}
+.text-input > input[type='text'] { width:100%; height:24px; border:1px solid #aaa;}
+.text-control { text-align:right; height:26px; padding:7px 10px; border:1px solid #999; border-top:none;}
+.text-control > .green { margin-left:10px;}
+
+
+
+html,body{ padding: 0;margin: 0; width:100%;height:100%; max-width: 560px; margin: 0 auto; font-size: 12px;}
+body{background: url(../images/bgimg.jpg) no-repeat; background-position:center top;  background-size: 100%}
+.logoBox{ width:100%; margin-bottom: 50%;}
+.logo{padding-top:20%; text-align: center;}
+.logo img{ display: inline;width:104px;}
+section{width:100%; background:rgba(0,0,0,0.6); }
+.authBox{padding: 1.5em 1em; clear: both;overflow: hidden;}
+#WEIXIN_BOX{ padding:1em 1em; }
+form{width:100%; position: relative;}
+.row{overflow: hidden; clear: both; margin-bottom: 1em;}
+.inputBox{float: left;width: 100%; border-bottom: 1px solid #ccc;overflow: hidden;}
+.text{width: 100%;color:#ccc;padding-left: 1em; background: none;border: none;}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ccc;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ccc;  
+}
+
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+   color: #ccc;  
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #ccc;  
+}
+
+
+.sendBtn,.loginBtn{ float: right;width:23%; display: block;text-align: center; border-radius:1.5em;} 
+.sendBtn{background: #ccc; color: #333; position: absolute;right: 0em;top: .2em;}
+.loginBtn{ background: #c59c2a; color: #333;}
+.text,.sendBtn,.loginBtn,.disclaimerBox{ height:3em;line-height: 3em;}
+.sendBtn{height: 2.2em; line-height: 2.2em; }
+.disclaimerBox{float: left; padding-left: 1em; width:40%; }
+.disclaimerBox a{ color: #999; margin-left:.5em; display: inline; border-bottom: 1px solid #ccc;padding-bottom: 2px ;font-size: .8em;}
+#wx-login{text-align: center; background: #2f8720; color: #fff;width:100%;margin-top: 1.5em;}
+#wx-login span{padding-left:.5em;}
+#wx-login img{width:1.3em;}
+#wx-login img,#wx-login span{display: inline; }
+.NoneedBox{clear: both; overflow: hidden;}
+
+
+@media (min-width: 240px) {
+    body { font-size:8px;}
+
+}
+
+@media (min-width: 310px) {
+    body { font-size:12px;}
+   
+}
+@media (min-width: 350px) {
+    body { font-size:14px;}
+   
+}
+
+@media (min-width: 400px) {
+    body { font-size:14px;}
+    
+}
+
+@media (min-width: 640px) {
+    body { font-size:22px;}
+   
+}
+
+@media (min-width: 700px) {
+    body { font-size:22px;}
+   
+}
+
+@media (min-width: 992px) {
+    body { font-size:22px; max-width:640px; margin:0 auto;}
+   
+}

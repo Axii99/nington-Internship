@@ -1,0 +1,280 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.button { display:inline-block; *display:inline; *zoom:1; vertical-align:middle; padding:0 15px; height:26px; line-height:26px; color:#fff;}
+.button.green { background:#009852;}
+.button.green:hover { background:#11a963;}
+.button.green:active { background:#008741;}
+.button.gray { background:#eee; color:#333; height:24px; line-height:24px; padding:0 14px; border:1px solid #aaa;}
+.button.gray:hover { background:#fff;}
+.button.gray:active { background:#ddd;}
+.button.blue { background:#0070bc;}
+.button.blue:hover { background:#1c94e2;}
+.button.blue:active { background:#127cc2;}
+
+/* 编辑区 */
+.editArea { position:relative; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.editArea { display: inline-block; *display: inline; *zoom:1;vertical-align:middle; }
+.editArea.noneblock{ display: block;}
+.editArea .edit { display:none; background:url(../images/shadow_bg.png) repeat; position:absolute; top:0; left:0; width:100%; height:1.4em; z-index:2;}
+.editable { border:1px dashed #999; margin:0; width:100%;}
+.editable .edit { display:block;}
+.editable .edit > h6 { line-height:1.2em; background:url(../images/edit_ico.png) no-repeat right center; margin:0 10px; text-align:right;}
+.editable .edit > h6 > a { color:#fff; font-size:.7em; padding-right:20px;}
+.editable .edit > h6 > a:hover { color:#fff; text-decoration:underline;}
+.editBox { display:none;}
+.editBox { font-size:12px;}
+.edit.text { border:none;}
+
+    /* 图片编辑 */
+.img-select { width:540px; border:1px solid #999; background:#fff; position:absolute; left:10px; top:30px; z-index:3;}
+
+.img-list { height:250px; overflow-y:auto; overflow-x:hidden; _overflow:auto;}
+.img-list > ul { width:520px; padding:0 0 10px 20px; overflow:hidden;}
+.img-list > ul > li { width:100px; height:100px; border:1px solid #aaa; text-align:center; float:left; margin:20px 20px 0 0; _display:inline; cursor:pointer;}
+.img-list > ul > li:hover, .img-list > ul > li.on { border-color:#f00;}
+.img-list > ul > li img { max-width:100px; max-height:100px;}
+.img-control { height:26px; border-top:1px solid #999; padding:7px 10px; overflow:hidden;}
+.img-control .file { position:relative; display:inline-block; *display:inline; *zoom:1; vertical-align:middle;}
+.img-control .file > input[type='text'] { width:118px; height:24px; border:1px solid #aaa;}
+.img-control .file > a { margin-left:5px;}
+.img-control .file > input[type='file'] { width:215px; height:26px; filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity:0; opacity:0; position:absolute; top:0; left:0; cursor:pointer;}
+.img-control .button.green { margin:0 5px;}
+.img-control > .fyy-fr > .green { margin-left:10px;}
+.cancel:hover { text-decoration:underline;}
+
+    /* 文字编辑 */
+.text-edit { width:100%; background:#fff; position:absolute; left:0; top:30px; z-index:3; min-width:200px;}
+.text-input { border:1px solid #999; padding:10px;}
+.text-input > input[type='text'] { width:100%; height:24px; border:1px solid #aaa;}
+.text-control { text-align:right; height:26px; line-height:26px; padding:7px 10px; border:1px solid #999; border-top:none;}
+.text-control > .green { margin-left:10px;}
+
+        /* 认证方式编辑 */
+.authMethod ul li { background-color:#F3565D;}
+
+.authBox .micP{ font-size: 0.9em;}
+.authBox .micP span.comName{color:#0382cd; font-size: 1.5em;}
+
+#header { padding:1em 1em 0;}
+.logo { width:14em; float:left;}
+
+.container {
+    height: 506px;
+    margin: 1em auto;
+    background: url(../images/bjOne.png) no-repeat;
+    background-size: cover;
+}
+.container:after { display:block; clear:both; content:"";}
+.leftPic { width:60%; height:25em; float:left;}
+.leftPic img { width:100%;}
+.loginBox { width:30%; height:60%; float:right;  background:#fff;  min-height:17em;  position:relative; right:15%; top:10%}
+.authBox { padding:0.5em 1em; overflow:hidden;}
+.authBox .tit { height:2.2em; line-height:2.2em;margin-bottom:2em; border-bottom:2px solid #F3565D;}
+.authBox .tit h2 { font-size:120%; color:#F3565D;}
+
+.row { margin-top:1em; width:100%; float:none;}
+.row.last { }
+.row:after { display:block; clear:both; font-size:0; content:"";}
+.col3 ,.col4, .col7 { 
+    margin:auto;
+     height:2em;line-height:2em; padding:0 .3em;
+    -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+}
+.col3 { width:30%; text-align:left;}
+.col4 { width:40%; text-align:left;}
+.col7 { width:70%;}
+.text { 
+
+    border:1px solid #F3565D; display:block; width:100%; height:2em;line-height: 2em;
+    -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+}
+
+.sendBtn { padding:0 .5em; width:100%; height:100%; text-align:center; color:#fff; border:none; background:#F6535D;}
+
+.loginBtn a { color:#FFFFFF;width: 100%}
+
+.mircroInfo em { display:inline-block; *display:inline; *zoom:1; vertical-align:middle; margin:.05em .5em; height:1.7em; cursor:pointer;}
+.mircroInfo em.copy { background:url(../images/copy.png) no-repeat; background-size:100%; width:4em}
+.mircroInfo em.microLetterApp { background:url(../images/open_microletter.png) no-repeat; background-size:100%; width:6em}
+.authBox h6, .authMethod p { float: left; margin-left:18%; padding:.5em; color:#666; font-size:90%;}
+.mircroInfo h2 { border-bottom:none; color:#666; display:inline-block; *display:inline; *zoom:1; vertical-align:middle;}
+.mircroInfo h2 span { border-bottom:1px solid #666; padding-bottom:.05em; font-size:130%;}
+
+ body { font-size:18px; min-width:480px; background:#FFFFFF;}
+.col-l { width:20px;}
+.col-r { margin-left:21px;}
+
+/*PC端一键自动登录*/
+.autologin{ display: none;padding: 2em 1.3em;overflow: hidden;}
+.oneKeyLoginslogan{margin: 1.5em 0 2em 0; font-size: 1em;color:#F3565D;}
+.showAccountNum{margin: 1em 0;}
+.showAccountNum p.accountNum{ text-align: left; }
+.showAccountNum p.accountNum span{ color:#F3565D;}
+.showAccountNum p{margin: 1em 0;}
+.changeAccount{margin: 1em 0;}
+.changeAccount #changeTheAccount{ float: right; color:#F3565D; text-decoration: underline; cursor: pointer;}
+
+.loginBtn input[type="button"] { width:90%; height:1.7em; line-height:1.7em; text-align:center; background:#F6535D; border:none; font-size:1.2em; color:#fff;}
+.loginBtn input[type="button"]:hover { background:#1c94e2;}
+.loginBtn input[type="button"]:active { background:#127cc2;}
+.onekeyLogin{ display: none;height: 5em;position: absolute;top: 0px;bottom: 0px;right: 0px;left: 0px;margin: 10em auto;width: 80%;}
+
+.row .col3>input[type="checkbox"] { margin-top:0.5em;}
+.row .col7>label { display:inline-block; font-size:.9em; line-height:2em; position:relative;}
+.row .col7>label > a { margin:0 .3em; color:#F3565D;}
+
+#visitors { margin-top:0.5em; font-size:0.8em; overflow: hidden;}
+#visitors a { color:#F3565D; text-decoration:underline;}
+#visitors a i{ font-style: normal;}
+#visitors a.visitor_apply{ float: left;  display: none;}
+#visitors a.change_password{ float: right;}
+
+
+.box.wx{ text-align: center;}
+.mircroInfo.wx{ text-align: center;}
+.mircroInfo.wx p{text-align: center;display: inline-block;}
+.mircroInfo.wx .copyText{ font-size: 1.4em; text-align: center;border: none;background: none;color: #F6535D;}
+.box.wx .loginBtn{display: inline-block;width: 80%; margin-top: .8em;}
+.box.wx .loginBtn .text{width: 100%;border: 1px solid .w.#F6535D;height: 2em;}
+.box.wx .loginBtn input[type="button"] {width: 100%;height: 1.7em;line-height: 1.7em;text-align: center;background: #F6535D;color: #fff;}
+
+/* 切换认证方式 */
+.authMethod { padding:0em 0;}
+.loginBox .authMethod { padding-right:1em;}
+.authMethod ul{margin-top:5px; width: 110%;}
+.authMethod ul:after { display:block; content:""; clear:both;}
+.authMethod ul li { width:60px; height:60px; margin:1.2em 3em .5em 0; cursor:pointer; float:right;background-repeat: no-repeat; 
+    background-size:100%; box-sizing:border-box; color:#fff; text-align:center; line-height:100px; font-size:2px;}
+section .authMethod ul li { width:5em; height:5em; font-size:1em; line-height:8em; color:#fff;}
+section .authMethod ul li span { font-size:.8em;}
+.authMethod ul li#USER_PASSWORD_MENU{ background-image:url(../images/auth_username.png);}
+.authMethod ul li#QR_CODE_GUEST_MENU{ background-image:url(../images/auth_qrcode.png);}
+.icon_border {
+    text-align: center;
+    line-height: 36px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #C8C8C8;
+    background-color: #F7F7F7;
+}
+.authMethod ul li { background-color:#F3565D;}
+#bg{ display: none;  position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.6;  opacity:.70;  filter: alpha(opacity=70);}
+#show{display: none;  position: absolute;  top: 10%;  left: 25%;  width:50%;  height: 300px;  padding: 8px;  border: 4px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}
+#showPasswordDiv{display: none;  position: absolute;  top: 10%;  left: 35%;  width:30%;  height: 300px;  padding: 8px;  border: 4px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}
+#passwordRemindDiv{display: none;  position: absolute;  top: 10%;  left: 35%;  width:30%;  height: 300px;  padding: 8px;  border: 4px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}
+#sv-visitorApply { display:block; float:right;margin-top: 0.5em;font-size: 1.2em;overflow: hidden;color: #F3565D;text-decoration: underline;}
+#closeBtn,#closeShowPwdBtn{float: right;width:25px;height:28px;background-color:#AAA;color:#FFF;display:block;border: 0;cursor:pointer;}
+.qrCodeGuestDiv.pc h2{margin-top: 1em;}
+#warning{margin: 2em;text-align: center;}
+
+@media (min-width: 640px) {
+    body { font-size:14px;}
+    .loginBox{ float:none; width:80%; margin:0 auto;}
+}
+
+@media (min-width: 720px) {
+    body { font-size:12px;}
+    .container {
+  
+    }
+   
+    .loginBox { width:30%; height:60%; float:right; }
+    .row { margin-top:1em; width:100%; float:none;}
+}
+
+@media (min-width: 960px) {
+    body { font-size:15px;}
+    .container {margin:2em auto;}
+
+    .loginBox { width:30%; height:60%; float:right; }
+    .leftPic img { height:25em;}
+    .row { margin-top:1em; width:100%; float:none;}
+        
+}
+
+@media (min-width: 1024px) {
+    body { font-size:16px;}
+    .container { margin:2em auto;}
+    .authMethod ul li { width:60px; height:60px; margin:1.2em 3em .5em 0; cursor:pointer; float:right;background-repeat: no-repeat; 
+    background-size:100%; box-sizing:border-box; color:#fff; text-align:center; line-height:100px; font-size:2px;}
+    .loginBox { width:30%; height:60%; float:right;}
+    .row { margin-top:1em; width:100%; float:none;}
+    
+}
+
+@media (min-width: 1280px) {
+    body { font-size:18px;}
+    .container { margin:2em auto;}
+
+    .loginBox { width:30%; height:60%; float:right; padding-bottom:120px;}
+    .row { margin-top:1em; width:100%; float:none;}
+
+}
+
+@media (min-width: 1920px) {
+    body {
+        font-size: 18px;
+    }
+
+    .container {
+        margin: 2em auto;
+    }
+
+    .loginBox {
+        width: 30%;
+        height: 60%;
+        float: right;
+        padding-bottom: 120px;
+    }
+
+    .row {
+        margin-top: 1em;
+        width: 100%;
+        float: none;
+    }
+
+    .loginBtn a {
+        color: #FFFFFF;
+        width: 90%;
+    }
+
+    .authMethod ul li {
+        width: 100px;
+        height: 100px;
+        margin: 1em 5em .5em 0;
+        cursor: pointer;
+        float: right;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        box-sizing: border-box;
+        color: #fff;
+        text-align: center;
+        line-height: 160px;
+        font-size: 18px;
+    }
+    .authBox h6, .authMethod p {
+        float: left;
+        margin-left: 40%;
+        padding: .5em;
+        color: #666;
+        font-size: 100%;
+    }
+        .icon_border {
+        text-align: center;
+        line-height: 36px;
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        border: 1px solid #C8C8C8;
+        background-color: #F7F7F7;
+    }
+    .row {
+        margin-top: 1em;
+        width: 110%;
+        float: none;
+    }
+    .row.last {
+        margin-left: -22px;
+    }
+}

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="renderer" content="webkit" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0 maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <title>WIFI</title>
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script type="text/javascript" src="./placeholder-support.js"></script>
+    </head>
+    <body>
+        <!-- 语言设置-->
+        <div class="change_langue" style="display:none">
+            <a id="change_ch" onclick="i18n.showLanguageValue('zh');portal.setServerLanguage('zh-CN');supportPlaceholder();">中文</a>|<a id="change_en" onclick="i18n.showLanguageValue('en');portal.setServerLanguage('en-US');supportPlaceholder();">English</a>
+        </div>
+       
+        <div class="container" id="chinese">
+            <img  class="logo" src="images/logo.png" alt="images/logo.png" />
+            <div class="loginBox">
+               
+                <!--短信验证登录-->
+               
+
+
+                
+
+                <!--   微信登录-->
+                <div class="authBox" id="WEIXIN_BOX">
+                    <div id="wxNoNeedmobile">
+                            <div class="qrCodeGuestDiv pc" style="margin-top: -40px;">
+                            <div class="qrCodeGuestImageDiv">
+                                <p>
+                                    <img  width="100%" height="100%"  id="wxCodeGuestImage" />
+                                </p>
+                            </div>
+                            <div class="qrCodeGuestTextDiv">
+                                <div class="editArea">
+                                    <h2><span i18n-key="weixinCodeHint"></span></h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col3"  i18n-key="weixinSecurityCode"></div>
+                                    <div class="col7">
+                                        <input type="text" id="wx-securityCode" i18n-key="weixinSecurityCode" class="text" / style="text-align:left;">
+                                    </div>
+                                </div><br/>
+                                <div class="loginBtn">
+                                    <a  i18n-key="login"  id="wxCodeLogin"></a>
+                                </div>
+                            </div></div>
+                    </div>
+                    
+                    <div id="wxNeedmobile">
+                        <div class="row needmobile">
+                            <div class="col3" i18n-key="mobile"></div>
+                            <div class="col7">
+                                <input type="text" class="text" id="wx-phoneNum" i18n-key="mobile" maxlength="20" onkeyup="value=value.replace(/[^\d]/g,'')"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3" i18n-key="verificationCode"></div>
+                            <div class="col3">
+                                <input type="text" id="wx-authPassword" class="text" i18n-key="verificationCode"/>
+                            </div>
+                            <div class="col4" style="display:table;">
+                                <a id="wx-sendPassword" class="sendBtn senVer"  i18n-key="sendVerificationCode" style="display: table-cell;vertical-align: middle;"></a>
+                            </div>
+                        </div>
+                        <div class="row last" style="display:none">
+                            <div class="col3">
+                                <input type="checkbox"  class="agreement" id="wx-agreement" checked="checked">
+                            </div>
+                            <div class="col7">
+                                <label><p class="alertdisclaimer" i18n-key="disclaimerLabel"></p></label>
+                            </div>
+                        </div>
+                        <div class="box wx">
+                            <div class="col3"></div>
+                            <div class="col7">
+                                <div class="loginBtn"><a class="wx-login" i18n-key="openWeixin"></a></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <p i18n-key="notice" style="margin-top:0.5em"></p>
+                </div>
+
+                
+        
+        </div>
+        <div id="showWinDiv" class="messages" style="display:none">
+            <div class="win" style="height:100%; width:100%; position:fixed; top:0px; left:0px;z-index: 2000;">
+                <div class="winbox" style="height:172px; width:266px; position:absolute; top:0px; left:0px; bottom:0px; right:0px; margin:auto;">
+                    <div class="showMessage" style="height:166px; width:260px; background:url(/am/page/portal/config/common/images/win_box.png) repeat; border:3px solid #999;">
+                        <p style="padding:20px; height:80px; overflow:auto; line-height:24px; border-bottom:1px solid #999; margin:0px; font-size:14px; color:#000;" id="ms-message">
+                        </p>
+                        <div class="showBtn" style="text-align:center; padding:8px 0;">
+                            <a id ="ms-cancelBtn"  class="cancelBtn" style="display:none; margin:0 5px; height:28px; line-height:28px; border:none; text-decoration:underline; background: transparent; width:90px; font-size:14px; color:#000; cursor:pointer;" i18n-key="cancel">
+                            </a>
+                            <a id="ms-sureBtn" class="sureBtn"  style="display:none; padding: .3em 1em; margin:0 5px;  height:28px; line-height:28px; border:1px solid #999; background: transparent; width:90px; font-size:14px; color:#000; cursor:pointer;" i18n-key="ok">
+                            </a>
+                            <a id="ms-alertSureBtn" class="alertSureBtn" style="display:inline-block; margin:0 5px; height:28px; line-height:28px; border:1px solid #999; background: transparent; width:90px; color:#000; cursor:pointer;" i18n-key="ok">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="revisit" value="false" />
+        <input type="hidden" id="loginName" />
+        <input type="hidden" id="enOrCh" value="true" />
+
+        <div id="bg"></div>
+        <div id="show" style="display: none;">
+            <button id="closeBtn">X</button>
+            <div class="tit"><h2><span i18n-key="weixinCode"></span></h2></div>
+                <div class="qrCodeGuestDiv pc">
+                    <div class="qrCodeGuestImageDiv">
+                        <br/>
+                        <p>
+                            <img  width="100%" height="100%"  id="wxCodeGuestImage" />
+                        </p>
+                    </div>
+                    <div class="qrCodeGuestTextDiv">
+                        <div class="editArea">
+                            <h2><span i18n-key="weixinCodeHint"></span></h2>
+                        </div>
+                        <div class="row">
+                            <div class="col3"  i18n-key="weixinSecurityCode"></div>
+                            <div class="col7">
+                                <input type="text" id="wx-securityCode" i18n-key="weixinSecurityCode" class="text" />
+                            </div>
+                        </div><br/>
+                        <div class="loginBtn">
+                            <a  i18n-key="login" id ="wxCodeLogin"></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div id="showPasswordDiv" style="display: none;">
+            <button id="closeShowPwdBtn">X</button>
+            <div class="tit"><h2><span i18n-key="passwordExpired" style="color:#0b82d0"></span></h2></div>
+            <div class=" pc">
+                <div class="qrCodeGuestDiv pc">
+                    <div class="row">
+                        <div class="col3"  i18n-key="newPassword"></div>
+                        <div class="col7">
+                            <input type="password" id="un-newpassword" i18n-key="newPassword" class="text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col3"  i18n-key="confirmPassword"></div>
+                        <div class="col7">
+                            <input type="password" id="un-confirmPassword" i18n-key="confirmPassword" class="text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col3" ></div>
+                        <div class="col7 loginBtn">
+                                <a  i18n-key="ok" id ="submitNewPasword"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+<script type="text/javascript">
+    (function(){
+         var language = 'zh';
+            i18n.push('mobileLogin','手机验证登录',language)
+                .push('oneKeyLoginslogan', '您可以点击下面的按钮一键上网：', language)
+                .push('notice', '友情提示：在WiFi认证成功页面，请点击进入“高瓴资本”公众号并关注，否则使用网络时长为15分钟，敬请理解。',language)
+                .push('selfCode','自助扫码',language)
+                .push('selfCodeHint','请扫描屏幕上的二维码进行上网，祝你上网愉快。',language)
+                .push('weixinCode','微信扫码',language)
+                .push('weixinCodeHint','请用微信扫描左侧的二维码并获取验证码，你就可以顺利上网。',language)
+                .push('visitorApplyLogin','访客自助登录',language)
+                .push('visitorApply','访客申请',language)
+                .push('smsAuth','短信验证登录',language)
+                .push('mobile','手机号码',language)
+                .push('verificationCode','短信密码',language)
+                .push('sendVerificationCode','发送验证码',language)
+                .push('login','登录',language)
+                .push('weixinAuth','微信验证登录',language)
+                .push('openWeixin','微信连WIFI',language)
+                .push('disclaimerLabel','我已阅读并接受免责声明条款',language)
+                .push('userPasswordAuth','用户名密码登录',language)
+                .push('userName','用户名',language)
+                .push('password','密码',language)
+                .push('guestApply','访客申请',language)
+                .push('changePassword','修改密码',language)
+                .push('revisitLogintitle','二次免认证登录',language)
+                .push('revisitLogin','登录',language)
+                .push('oneKeyLogin','一键登录',language)
+                .push('currentAccount','当前登录账号:',language)
+                .push('changeAccount','更换账号',language)
+                .push('mobileEmptyMsg','手机号码未输入',language)
+                .push('imageCodeEmptyMsg','图片验证码未输入',language)
+                .push('verificationCodeEmptyMsg','验证码未输入!',language)
+                .push('incorrectVerificationCodeMsg','验证码不正确!',language)
+                .push('disclaimeNotCheckMsg','请阅读免责声明，接受免责声明后才能登录。',language)
+                .push('userNameEmptyMsg','请输入用户名!',language)
+                .push('staticPasswordEmptyMsg','请输入密码！',language)
+                .push('dynamicPasswordEmptyMsg','请输入动态密码！',language)
+                .push('secondsToResend','秒后重发',language)
+                .push('verificationCodeSent','发送验证码成功',language)
+                .push('send','发送验证码',language)
+                .push('refresh','刷 新',language)
+                .push('clickSendVerifyCode','请点击发送验证码！',language)
+                .push('dynamicpassword','动态密码',language)
+                .push('qrCodeGuestAuth','协助扫码',language)
+                .push('visitormobile','请输入手机号码',language)
+                .push('visitorpassword','请输入验证码',language)
+                .push('uese other way','使用其他登录方式：',language)
+                .push('imageCode','图片验证码',language)
+                .push('logginIn','正在登录... ,请稍等。',language)
+                .push('passwordExpired','密码已过期，请修改',language)
+                .push('modifyPassoword','修改密码',language)
+                .push('newPassword','新密码',language)
+                .push('confirmPassword','确认密码',language)
+                .push('fieldIsEmpty','属性为空',language)
+                .push('differentInput','两次输入不一样',language)
+                .push('modifySuccess','修改成功',language)
+                .push('weixinSecurityCode','微信验证码',language);
+            language = 'en';
+        i18n.push('mobileLogin', 'Mobile phone login authentication', language)
+             .push('notice', 'Tips: please subscribe the "Hillhouse Capital" Wechat official account after login, otherwise the network is only available for 15 minutes, please understand.', language)
+                .push('revisitLogintitle','Autologin',language)
+                .push('visitormobile','phonenumber',language)
+                .push('weixinCode','weixin code',language)
+                .push('weixinCodeHint','Please use Wechat scan th QRcode on the left and use the verification code to access.',language)
+                .push('visitorpassword','verificationCode',language)
+                .push('oneKeyLoginslogan','please click the button to connect internet：',language)
+                .push('selfCode','Self scan code',language)
+                .push('selfCodeHint','Please scan Qr Code on the desk.',language)
+                .push('visitorApplyLogin','Visitor apply login',language)
+                .push('visitorApply','VisitorApply',language)
+                .push('smsAuth','Message authentication login',language)
+                .push('mobile','Phone number',language)
+                .push('verificationCode','Code',language)
+                .push('sendVerificationCode','Send',language) 
+                .push('login','Login',language)
+                .push('weixinAuth','Wechat login',language)
+                .push('openWeixin','Open wechat',language)
+                .push('userPasswordAuth','User authentication',language)
+                .push('userName','Username',language)
+                .push('password','Password',language)
+                .push('guestApply','Visitors to apply for',language)
+                .push('changePassword','change password',language)
+                .push('revisitLogin','Revisit Login',language)
+                .push('oneKeyLogin','Onekey Login',language)
+                .push('currentAccount','Current login account：',language)
+                .push('changeAccount','Change the account',language)
+                .push('mobileEmptyMsg','Please enter your mobile!',language)
+                .push('imageCodeEmptyMsg','Please enter image code!',language)
+                .push('verificationCodeEmptyMsg','Please enter verification code!',language)
+                .push('incorrectVerificationCodeMsg','Incorrect verification code!',language)
+                .push('disclaimeNotCheckMsg','Please accept the disclaime.',language)
+                .push('disclaimerLabel','Accept Disclaimer.',language)
+                .push('staticPasswordEmptyMsg','Please enter password !',language)
+                .push('dynamicPasswordEmptyMsg','Please enter dynamic password !',language)
+                .push('secondsToResend',' seconds to resend',language)
+                .push('verificationCodeSent','Verification Code Sent',language)
+                .push('userNameEmptyMsg','Please enter user name !',language)
+                .push('send','send',language)
+                .push('refresh','Refresh',language)
+                .push('clickSendVerifyCode','Please click the button send verifycode ！',language)
+                .push('dynamicpassword','Dynamicpassword',language)
+                .push('qrCodeGuestAuth','QR Code',language)
+                .push('uese other way','Login using other way：',language)
+                .push('imageCode','Image Code',language)
+                .push('logginIn','Login in ... ,Please wai!.',language)
+                .push('passwordExpired','Password has expired, please modify',language)
+                .push('modifyPassoword','modify password',language)
+                .push('newPassword','new password',language)
+                .push('confirmPassword','confirm password',language)
+                .push('fieldIsEmpty','Field is empty',language)
+                .push('differentInput','Two different input',language)
+                .push('modifySuccess','modify success',language)
+                .push('weixinSecurityCode','Weixin Security Code',language);
+     
+            i18n.showLanguageValue(portal.urlParams.language.substr(0,2)); 
+            portal.setServerLanguage(portal.urlParams.language.substr(0,2)); 
+            supportPlaceholder();
+             // 菜单事件
+            $(".authMenu").each(function(){
+                var $currentMenu = $(this);
+                var $targetBox = $($currentMenu.attr('target'));
+                $currentMenu.click(function(){
+                    $(".authMenu").show();
+                    $(".authBox").hide();
+                    $currentMenu.hide();
+                    $targetBox.show();
+                });
+            });
+
+
+            
+
+            //获取默认类型,并对页面进行处理
+            var initDefaultType = function(){
+                portal.getDefaultType(
+                    function(json){
+                        var type = portal.portalType;
+                        if(json.success){
+                            var data = json.data;
+                          
+                            $(".authMethod").show();
+                            $(".authMenu,.authBox").hide();
+                            $(".authMenu").removeClass('authMenu');
+                            if(data.length == 1){
+                                $(".otherway").hide();
+                            }
+                            for(var i in data){
+                                var obj = data[i];
+                                if(obj.type === type.ONE_KEY_LOGIN){
+                                    $("#ONE_KEY_LOGIN_BOX").show();
+                                    return;
+                                }
+                                if(obj.type === type.QR_CODE_GUEST){
+                                    if( portal.urlParams.editMode){
+                                        $("#qrCodeGuestImage").attr('src','images/qrCodeGuestImage.png');
+                                    };
+                                    portal.qrCodeGuestLogin.tryLogin();
+                                }
+                                
+                                if(portal.urlParams.revisit === "true" && portal.urlParams.portalType !== type.WEIXIN){
+                                    $("#loginNameSpan").text(portal.urlParams.loginName);
+                                    $("#autologin").show();
+                                     $(".otherway").hide();
+                                    $("#changeTheAccount").click(function(){
+                                        window.location.href = window.location.href.replace('revisit=true','revisit=false');
+                                        initDefaultType();
+                                    });
+                                    return;
+                                }
+                                var typeName = type[obj.type];
+                                $("#" + typeName + "_MENU").addClass('authMenu').show();
+                                if(obj.defaultType){
+                                    $("#" + typeName + "_BOX").show();
+                                    $("#" + typeName + "_MENU").hide();
+                                }
+                            }
+                        }else{
+                            showMessage(json.message,true);
+                        }
+                    }
+                );
+            };
+            initDefaultType();
+
+             //免责声明(获取免责声明相关信息)
+            
+             
+                portal.getDisclaimer(function(json){
+                    $("#disclamercontent p").text(json.data.disclaimer);
+                    
+                });
+
+            var checkNotNull = function($dom){
+                var result = true;
+                if(!$dom.val()){
+                    $dom.focus();
+                    result = false;
+                }
+                return result;
+            };
+
+
+        //短信认证
+        (function(){
+            var smsLogin = portal.smsLogin; //  短信登录方法服务
+            var $phoneNum = $("#msg-phoneNum");
+            var $authPassword = $("#msg-authPassword");
+            var $agreement = $("#msg-agreement");
+            var $sendPassword = $("#msg-sendPassword");
+            var $submitSms = $("#msg-submitSms");
+
+            var randomNum = 0;  //前台随机数（非后台发送）
+            var smsSend = false; //短信是否已发送(默认未发送)
+            var verifyCodeSend = false; //验证码是否已发送(默认未发送)
+            var needImageCode = false; //默认不需要图片验证码
+            var mobileOnly = false;
+
+            if(needImageCode){
+                $("#imageCodeDiv").show();
+                $("#imageCode")[0].src = '/am/controller/portal/sms/imageCode';
+            }else{
+                $("#imageCodeDiv").hide();
+            }
+
+
+            smsLogin.mobileOnly(function(json){
+                 mobileOnly = json.data;
+             });
+            
+            // 检察短信是否可发送
+            var checkSendSms = function(){
+                if(!checkNotNull($phoneNum)){showMessage(i18n.getValue('mobileEmptyMsg')); return false;}
+                if(needImageCode){
+                    if(!checkNotNull($("#msg-imageCode"))){showMessage(i18n.getValue('imageCodeEmptyMsg')); return false;}
+                }
+                return true;
+            };
+
+            // 检察是否可登录
+            var checkSubmit = function(){
+                if(!checkNotNull($phoneNum)){showMessage(i18n.getValue('mobileEmptyMsg')); return false;}
+                if(!checkNotNull($authPassword)){showMessage(i18n.getValue('verificationCodeEmptyMsg')); return false;}
+//                if(verifyCodeSend === false && smsSend === false){
+//                    showMessage(i18n.getValue('clickSendVerifyCode'));
+//                    return false;
+//                }
+                if(verifyCodeSend === true && smsSend === false){
+                    if($authPassword.val() !== randomNum){
+                        showMessage(i18n.getValue('incorrectVerificationCodeMsg'));
+                        $authPassword.focus(); 
+                        return false;
+                    }
+                }
+                if(!$agreement.prop('checked')){showMessage(i18n.getValue('disclaimeNotCheckMsg')); $agreement.focus(); return false;}
+                return true;
+            };
+
+
+            //禁用发送按钮
+            //发送按钮文字变为60秒倒计时
+            var timeCall = function(){
+                var timer = 60;
+                verifyCodeSend = true;
+                var timeSet = function() {
+                    $sendPassword.addClass('on').attr('disabled',true);
+                    if (timer > 0) {
+                        timer--;
+                        $sendPassword.text(timer + i18n.getValue('secondsToResend'));
+                    } else {
+                        $sendPassword.text(i18n.getValue('send')).removeClass("on").attr('disabled',false);
+                        verifyCodeSend = false;
+                        clearInterval(t);
+                    }
+                };
+                timeSet();
+                var t = setInterval(timeSet, 1000);
+
+                return {
+                    reset:function(){
+                        timer = 0;
+                    }
+                };
+            };
+
+            //发送短信或生成验证码
+            $sendPassword.click(function(){
+                if(!checkSendSms()) return;
+                if(verifyCodeSend) return;
+                    if(mobileOnly){
+                        randomNum = (Math.random()*10000).toFixed(0);
+                        $authPassword.val(randomNum);
+                        timeCall();
+                    }else{
+                        var timeProcess = timeCall();
+                        smsLogin.sendPassword($phoneNum.val(),function(jsonData){
+                            if(jsonData.success){
+                                smsSend = true;
+                                showMessage(jsonData.data);
+                            }else{
+                                timeProcess.reset();
+                                showMessage(jsonData.message);
+                            }
+                        },$("#msg-imageCode").val());
+                    }
+            });
+
+            //登录
+            $submitSms.click(function(){
+                if(!checkSubmit()) return;
+                //仅验证手机号登录
+                var method = smsLogin.smsLogin;
+                if(!mobileOnly){
+                    //校验短信验证
+                    method = smsLogin.verifyPassword;
+                }
+                method({mobile:$phoneNum.val(),password:$authPassword.val()});
+            });
+        })();
+
+
+
+
+         //用户名密码认证服务
+        (function(){
+            var userPasswordLogin = portal.userPasswordLogin;  //用户名密码认证服务
+            var $username = $("#un-userName");
+            var $password = $("#un-password");
+            var $dynamicMsgDiv = $("#dynamicMsgDiv");//少了两个div和两个输入框的ID
+            var $dynamicTokenDiv =  $("#dynamicTokenDiv");
+            var $staticPsdDiv = $("#staticPsdDiv");
+            var $dynamicPassword = $("#un-dynamicPassword");
+            var $dynamicTokenPassword = $("#un-TokenPassword");
+            var _dynamicPassword = $dynamicPassword;
+            var $sendPassword = $("#un-sendPassword");
+            var $login  = $("#un-login");
+            var $gustApply = $("#un-gustApply");
+            var $changePassword = $("#un-changePassword");
+            var $agreement=$("#msg-agreement")
+            var sendAlread = false;
+            var usernamePortalInfo = null;
+
+            //禁用发送按钮
+            //发送按钮文字变为60秒倒计时
+            var t = null;
+            var timeCall = function(){
+                var timer = 60;
+                verifyCodeSend = true;
+                var timeSet = function() {
+                    $sendPassword.addClass('on').attr('disabled',true);
+                    if (timer > 0) {
+                        timer--;
+                        $sendPassword.text(timer + i18n.getValue('secondsToResend'));
+                    } else {
+                        $sendPassword.text(i18n.getValue('sendVerificationCode')).removeClass("on").attr('disabled',false);
+                        sendAlread = false;
+                        clearInterval(t);
+                    }
+                };
+                timeSet();
+                t = setInterval(timeSet, 1000);
+                $sendPassword.text(i18n.getValue('sendDynamicPassword')).removeClass("on").attr('disabled',false);
+                return {
+                    reset:function(){
+                        timer = 0;
+                    }
+                };
+            };
+
+            //重置按键
+            var reset = function(){
+                $dynamicPassword.val('');
+                $dynamicTokenPassword.val('');
+                $password.val('');
+                $sendPassword.text(i18n.getValue('sendDynamicPassword')).removeClass("on").attr('disabled',false);
+                sendAlread = false;
+                if(t){ clearInterval(t);}
+            };
+
+            var check = function(){
+                if(!checkNotNull($username)){showMessage(i18n.getValue('userNameEmptyMsg'),function(){$username.focus();}); return false;}
+                if(usernamePortalInfo.staticPasswordRequired){
+                    if(!checkNotNull($password)){showMessage(i18n.getValue('staticPasswordEmptyMsg'),function(){$password.focus();}); return false;}
+                }
+                if(usernamePortalInfo.dynamicPasswordRequired){
+                    if(!checkNotNull(_dynamicPassword)){showMessage(i18n.getValue('dynamicPasswordEmptyMsg'),function(){_dynamicPassword.focus();}); return false;}
+                }
+                if(!$agreement.prop('checked')){showMessage(i18n.getValue('disclaimeNotCheckMsg'),function(){$agreement.focus();}); return false;}
+                
+                return true;
+            };
+
+
+            userPasswordLogin.visitorsApply($gustApply);
+            
+
+            $username.blur(function(){
+                userPasswordLogin.passwordRequirement($username.val(),function(json){
+                    if(json.success){
+                        $staticPsdDiv.hide();
+                        $dynamicMsgDiv.hide();
+                        $dynamicTokenDiv.hide();
+                        
+                        usernamePortalInfo = json.data;
+                        $dynamicMsgDiv.hide();
+                        $dynamicTokenDiv.hide();
+                        if(json.data.dynamicPasswordRequired){
+                            if(json.data.needsGetDynamicPassword){
+                                $dynamicMsgDiv.show();
+                                $dynamicPassword.focus();
+                                _dynamicPassword = $dynamicPassword;
+                            }else{
+                                $dynamicTokenDiv.show();
+                                $dynamicTokenPassword.focus();
+                                _dynamicPassword = $dynamicTokenPassword;
+                            }
+                        }
+                        if(json.data.staticPasswordRequired){
+                            $staticPsdDiv.show();
+                            $password.focus();
+                        }
+                    }
+                });
+            }).change(reset);
+
+            
+
+            $sendPassword.click(function(){
+                if(sendAlread){
+                    return;
+                }
+                if(!checkNotNull($username)){showMessage(i18n.getValue('userNameEmptyMsg')); return false;}
+                var timeCallProcess =  timeCall();
+                userPasswordLogin.getDynamicPassword($username.val(),function(jsonData){
+                    if(jsonData.success){
+                        sendAlread = true;  
+                    }else{
+                        timeCallProcess.reset();
+                    }
+                });
+            });
+
+
+            $("#closeShowPwdBtn").click(function(){
+                $('#bg').hide();
+                $('#showPasswordDiv').hide();
+                $('#confirmPassword').val('');
+                $('#un-confirmPassword').val('');
+            });
+
+
+            $("#submitNewPasword").click(function(){
+                if(!checkNotNull($('#un-newpassword'))){showMessage(i18n.getValue('fieldIsEmpty')); return false;}
+                if(!checkNotNull($('#un-confirmPassword'))){showMessage(i18n.getValue('fieldIsEmpty')); return false;}
+                if($('#un-newpassword').val() != $('#un-confirmPassword').val()){
+                    showMessage(i18n.getValue('differentInput')); return false;
+                }
+                userPasswordLogin.changeExpiredPassword($('#un-newpassword').val(),$('#un-confirmPassword').val(),function(data){
+                    if(data.success){
+                        $('#bg').hide();
+                        $('#showPasswordDiv').hide();
+                        showMessage(i18n.getValue('modifySuccess')); 
+                    }else{
+                        showMessage(data.message);
+                    }
+                });
+            });
+
+            $login.click(function(){
+                if(!check()){
+                    return;
+                }
+
+                var loginError = function(json){
+                    $("#ms-sureBtn").click();
+                    if(!json.success ){
+                        if(json.errorCode === portal.errorCode.ERROR_PASSWORD_EXPIRED){
+                            $('#bg').show();
+                            $('#showPasswordDiv').show();
+                        }else{
+                            portal.commonLoginError(json);
+                        }
+                    }
+                };
+                showMessage(i18n.getValue('logginIn'));
+                userPasswordLogin.login({
+                    loginName:$username.val(),
+                    password:$password.val(),
+                    dynamicPassword:_dynamicPassword.val()
+                },loginError);
+
+            });
+            $changePassword.click(function(){
+                 userPasswordLogin.resetPassword();
+            });
+
+        })();
+
+          
+          
+          //微信认证
+        (function(){
+            var weixinLogin = portal.weixinLogin;
+            var $phoneNum = $("#wx-phoneNum");
+            var $authPassword= $("#wx-authPassword");
+            var $sendPassword = $("#wx-sendPassword");
+            var $agreement = $("#wx-agreement");
+            var $login = $(".wx-login");
+            var smsSend = false;
+            var needsMobile= false;
+            var verifyCodeSend = false; //验证码是否已发送(默认未发送)
+
+            $("#wxNeedmobile").hide();
+            $("#wxNoNeedmobile").show();
+            //如果需要手机号登录：输入框显示
+            weixinLogin.needsMobile(function(json){
+                if(json.success){
+                    if(json.data){
+                        needsMobile = true;
+                        $("#wxNeedmobile").show();
+                        $("#wxNoNeedmobile").hide().html('');
+                    }else{
+                        $("#wxNeedmobile").hide();
+                        $("#wxNoNeedmobile").show();
+                        $('#show').html('');
+                    }
+                    weixinLogin.qrCodeUrl(function(json){
+                            $("#wxCodeGuestImage")[0].src =  json.data + '?d=' + (new Date()).getTime();
+                        });
+                }
+                $("#wxCodeLogin").click(function(){
+                weixinLogin.verifyCode($("#wx-securityCode").val(),function(data){
+                    if(data.success){
+                        weixinLogin.callUp(null,true);
+                    }else{
+                        showMessage(data.message);
+                    }
+                });
+            });
+            });
+            
+            $("#closeBtn").click(function() {
+                $('#bg').hide();
+                $('#show').hide(); 
+            });
+
+            // 检察短信是否可发送
+            var checkSendSms = function(){
+                if(!checkNotNull($phoneNum)){showMessage(i18n.getValue('mobileEmptyMsg')); return false;}
+                return true;
+            };
+
+            // 检察是否可登录(没有调用login.js不能使用message；也没有设置样式 )
+            var checkSubmit = function(){
+                if(!checkNotNull($phoneNum)){showMessage(i18n.getValue('mobileEmptyMsg')); return false; }
+                if(!checkNotNull($authPassword)){showMessage(i18n.getValue('verificationCodeEmptyMsg')); return false; }
+                if(!$agreement.prop('checked')){showMessage(i18n.getValue('disclaimeNotCheckMsg')); return false;}
+                return true;
+            };
+
+
+            //禁用发送按钮
+            //发送按钮文字变为60秒倒计时
+            var timeCall = function(){
+                var timer = 60;
+                var timeSet = function() {
+                    $sendPassword.addClass('on').attr('disabled',true);
+                    if (timer > 0) {
+                        timer--;
+                        $sendPassword.text(timer + i18n.getValue('secondsToResend'));
+                    } else {
+                        $sendPassword.text(i18n.getValue('sendVerificationCode')).removeClass("on").attr('disabled',false);
+                        smsSend = false;
+                        clearInterval(t);
+                    }
+                };
+                timeSet();
+                var t = setInterval(timeSet, 1000);
+                return {
+                    reset:function(){
+                        timer = 0;
+                    }
+                };
+            };
+
+            //发送短信或生成验证码
+            $sendPassword.click(function(){
+                if(!checkSendSms()) return;
+                if(smsSend) return;
+                var timeCallProcess = timeCall();
+                weixinLogin.sendSmsPassword($phoneNum.val(),function(json){
+                    if(json.success){
+                        smsSend = true;
+                    }else{
+                        timeCallProcess.reset();
+                        showMessage(json.message);
+                    }
+                });
+            });
+
+
+           
+
+            //登录
+            $login.click(function(){
+                var showImg = function(){
+                    $('#bg').show();
+                    $('#show').show();
+                    weixinLogin.qrCodeUrl(function(json){
+                        $("#wxCodeGuestImage")[0].src =  json.data + '?d=' + (new Date()).getTime();
+                    });
+                };
+                if(!checkNotNull($authPassword)){ showMessage(i18n.getValue('verificationCodeEmptyMsg')); return false;}
+                weixinLogin.verifyPCSmsPassword( $phoneNum.val(),$authPassword.val(),
+                        function(data){
+                            if(data.success){
+                                showImg();
+                            }else{
+                                 showMessage(data.message);
+                            }
+                        });
+            });
+        })();
+
+
+         //访客自助申请
+        (function(){
+            var $phoneNum = $("#sv-phoneNumber");
+            var $loginPassword = $("#sv-loginPassword");
+            var $agreement = $("#sv-agreement");
+
+            $("#sv-login").click(function(){
+                if(!checkNotNull($phoneNum)){ showMessage(i18n.getValue('mobileEmptyMsg')); return false;}
+                if(!checkNotNull($loginPassword)){ showMessage(i18n.getValue('staticPasswordEmptyMsg')); return false;}
+                if(!$agreement.prop('checked')){ showMessage(i18n.getValue('disclaimeNotCheckMsg'));  $agreement.focus(); return false;}
+                portal.selfHelpVisitorLogin.login({loginName:$phoneNum.val(),password:$loginPassword.val()});
+            }); 
+
+            $("#sv-visitorApply").click(function(){
+                portal.selfHelpVisitorLogin.applyPage();
+            });
+        })();
+
+        
+
+         //showmessage方式
+        var showMessage = function(message,warn){
+            $(".showBtn a").hide();
+            if(warn === true){
+                $("#ms-alertSureBtn").show();
+            }else{
+                $("#ms-sureBtn").show();
+            }
+            $("#ms-sureBtn,#ms-alertSureBtn").click(function(){
+                $("#showWinDiv").hide();
+            });
+            $("#showWinDiv").show();
+            $("#ms-message").html(message);
+         };
+        portal.setShowMessageMethod(showMessage);
+
+
+    })();
+</script>

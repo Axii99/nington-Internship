@@ -1,0 +1,216 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/**
+Author :        Feng Yiyong
+Version:        2.0
+Date   :		2014-4-14
+Explain:        此样式为页面初始化样式。
+**/
+
+/*------------------------------- CSSReset -------------------------------*/
+
+/** 清除边距 **/
+body,h1,h2,h3,h4,h5,h6,p,blockquote, /* structural elements 结构元素 */
+dl,dt,dd,ul,ol,li, /* list elements 列表元素 */
+form,fieldset,legend,button,input,textarea,a,div,span,img,/* form elements 表单元素 */
+th,td, /* table elements 表格元素 */
+head,section,nav,footer /* html5 新增标签*/ { margin:0; padding:0;}
+
+/** 字体设置 **/
+body,
+button,input,select,textarea/* for ie */{ font:12px/1.5 "微软雅黑", \5b8b\4f53, tahoma, arial, sans-serif, "宋体"; color:#333333;}
+h1,h2,h3,h4,h5,h6{ font-size:100%; font-weight:normal;}
+address,em,i{ font-style:normal;} /* 将斜体扶正 */
+
+/*去除元素轮廓---fbx---*/
+div,table,form,input,button,select,textarea,fieldset,legend{ outline:none;}/* for google / safari*/
+
+/** 重置列表元素 **/
+ul,ol{ list-style:none outside none;}
+
+/** 重置链接元素 **/
+a{ color:#2a2a2a;text-decoration:none; cursor:pointer;}
+
+/** 重置表单元素 **/
+img{ border:0;} /* img 搭车：让链接里的 img 无边框 */
+button,input,select,textarea { font-size:100%;} /* 使得表单元素在 ie 下能继承字体大小 */
+button { -webkit-box-sizing:content-box; -moz-box-sizing:content-box; box-sizing:content-box;}
+
+/** 重置表格元素 **/
+table{ border-collapse:collapse; border-spacing:0;}
+
+/** 重置元素垂直居中 **/
+img,input,select,textarea,button{ vertical-align:middle;}
+
+/** 文字对齐方式设置 **/
+.fyy-textRt{ text-align:right !important;}
+.fyy-textLt{ text-align:left !important;}
+.fyy-textCt{ text-align:center !important;}
+
+/** 浮动 **/
+.fyy-fl{ float:left;}
+.fyy-fr{ float:right;}
+
+/** 清除浮动 **/
+.fyy-clear{ clear:both;}
+
+/** 空白高度设置 **/
+.fyy-space{ height:10px; line-height:1px; font-size:1px; clear:both;}
+
+/** webkit内核 滚动条模拟 **/
+::-webkit-scrollbar { height:15px; width:15px;}
+::-webkit-scrollbar-button { height:0; width:0}
+::-webkit-scrollbar-button:start:decrement { width:0; height:0;}
+::-webkit-scrollbar-button:vertical:start:increment { display:block;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment { display:block;}
+::-webkit-scrollbar-button:vertical:end:decrement { display:none;}
+::-webkit-scrollbar-track:vertical,::-webkit-scrollbar-track:horizontal,::-webkit-scrollbar-thumb:vertical,::-webkit-scrollbar-thumb:horizontal,::-webkit-scrollbar-track:vertical,::-webkit-scrollbar-track:horizontal,::-webkit-scrollbar-thumb:vertical,::-webkit-scrollbar-thumb:horizontal { background:#ffffff;}
+::-webkit-scrollbar-track:vertical::-webkit-scrollbar-track:horizontal{ background-clip:padding-box; background-color:#fff;}
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow:inset 0 0 2px rgba(0,0,0,1);
+    background-clip:padding-box; background-color:rgb(240,240,240); min-height:28px; padding-top:100px;}
+::-webkit-scrollbar-thumb:hover {
+    -webkit-box-shadow:inset 0 0 2px rgba(0,0,0,1);
+    background-color:rgb(240,240,240);
+}
+::-webkit-scrollbar-thumb:active {
+    -webkit-box-shadow:inset 0 0 2px rgba(0,0,0,1);
+    background-color:rgb(220,220,220);
+}
+::-webkit-scrollbar-track:vertical,::-webkit-scrollbar-track:horizontal,::-webkit-scrollbar-thumb:vertical,::-webkit-scrollbar-thumb:horizontal { border-width:0;}
+::-webkit-scrollbar-track:hover {
+    -webkit-box-shadow:inset 1px 0 0 rgba(0,0,0,.1);
+}
+::-webkit-scrollbar-track:active {
+    -webkit-box-shadow:inset 1px 0 0 rgba(0,0,0,.15),inset -1px -1px 0 rgba(0,0,0,.07);
+}
+
+/** table半角换行 **/
+table { word-wrap:break-word; word-break:break-all;}
+
+
+.loginBtn a { display:inline-block; *display:inline; *zoom:1; width:100%; height:1.6em; line-height:1.6em; text-align:center; background:#f9f9f9; border:1px solid #dadada; font-size:1.2em;}
+section .loginBtn a { height:2em; line-height:2em;}
+
+section .editArea h2 { border-bottom:none;}
+.sendBtn[disabled] { background:#ccc;}
+
+/* 颜色选择器 */
+.bigpicker{ width:227px; height:163px;	 position: absolute; z-index: 9999; background-color: #f0f0f0; padding: 2px 0 1px 5px; border-left: solid 1px #ccc; border-top: solid 1px #ccc; border-right: solid 1px #565656; border-bottom: solid 1px #565656; display: none;}
+.bigpicker-sections-color{ margin: 0; padding: 0;}
+
+.bigpicker-sections-color ul{ margin: 0; padding: 0; float: left;}
+.bigpicker-sections-color ul li{ list-style: none outside none; margin: 0; padding: 0; border-top:solid 1px #000000; border-left:solid 1px #000000; width:10px; height: 10px; overflow:hidden; line-height:0px; font-size:0px;}
+
+.bigpicker .biglayout{ width:10px; height:10px; border:solid 1px #FFFFFF; position: absolute; z-index: 10000; display: none; line-height: 10px; overflow: hidden; cursor: default;}
+
+.bigpicker-bgview-text{ margin: 0; padding: 0; height: 24px;}
+.bigpicker-bgview-text li{ padding: 0 5px 0 0; list-style: none outside none; float: left; line-height:18px;}
+
+.bigpicker-bgview-text li div{ height: 20px; width: 55px; background-color: #000; border-left: solid 1px #ccc; border-top: solid 1px #ccc; border-right: solid 1px #2b2b2b; border-bottom: solid 1px #2b2b2b;}
+.bigpicker-bgview-text li input{ margin: 0; padding: 0; height: 17px; width: 55px;}
+
+.bigpicker-bgimage{ background-image:url(../images/big_bgcolor.jpg);}
+
+/*双语*/
+.change_langue { 
+    display:none; position:fixed; top:20px; right:20px; width:150px; height:40px; line-height:40px; padding:5px 10px; background:rgba(255,255,255,0.8); text-align:center; ine-height:40px; font-size:14px; z-index:22;
+    -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px;
+}
+.change_langue a { color: #666; display: inline-block; width: 60px; margin: 0 5px;}
+.winbox * { -webkit-box-sizing:content-box; -moz-box-sizing:content-box; box-sizing:content-box;}
+.authBox .mircroInfo.wx .copyText { font-size:1.2em; display:block; text-align:center;}
+.authBox .mircroInfo.wx p { text-align:left; font-size:1.1em; line-height:1.8; padding-bottom:.5em; border-bottom: 1px dashed #aaa;}
+section .authBox .mircroInfo.wx p { text-align:left; font-size:1.3em; line-height:1.8; margin-bottom:1em; padding-bottom:.5em; border-bottom: 1px dashed #aaa;}
+.autologin button.radiusBtn { background:url(../images/portal/wifi_icon.png) no-repeat center center transparent; background-size: 100% 100%; text-indent: -9999px; border:1px solid #ccc;}
+.win .winbox { background-color:transparent !important;}
+.showBtn a { font-size:14px; vertical-align: text-top;}
+section #autoLoginBtn { color:transparent;}
+
+
+/* 编辑区 */
+.editArea { position:relative; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.editArea .edit { display:none; background:url(../images/shadow_bg.png) repeat; position:absolute; top:0; left:0; width:100%; height:1.4em; z-index:2;}
+.editArea.logo .img-select { left:0;}
+.editable { border:1px dashed #999; margin:0;}
+.editable .edit { display:block;}
+.editable .edit > h6 { line-height:1.2em; background:url(../images/edit_ico.png) no-repeat right center; margin:0 10px; text-align:right;}
+.editable .edit > h6 > a { color:#fff; font-size:.7em; padding-right:20px;}
+.editable .edit > h6 > a:hover { color:#fff; text-decoration:underline;}
+.editBox { display:none;}
+.editBox { font-size:12px;}
+    /* 图片编辑 */
+.img-select { width:540px; border:1px solid #999; background:#fff; position:absolute; right:30px; top:30px; z-index:3;}
+.img-list { height:250px; overflow-y:auto; overflow-x:hidden; _overflow:auto;}
+.img-list > ul { width:520px; padding:0 0 10px 20px; overflow:hidden;}
+.img-list > ul > li { width:100px; height:100px; border:1px solid #aaa; text-align:center; float:left; margin:20px 20px 0 0; _display:inline; cursor:pointer;}
+.img-list > ul > li:hover, .img-list > ul > li.on { border-color:#f00;}
+.img-list > ul > li img { max-width:100px; max-height:100px;}
+.img-control { height:26px; border-top:1px solid #999; padding:7px 10px; overflow:hidden;}
+.img-control .file { position:relative; display:inline-block; *display:inline; *zoom:1; vertical-align:middle;}
+.img-control .file > input[type='text'] { width:118px; height:24px; border:1px solid #aaa;}
+.img-control .file > a { margin-left:5px;}
+.img-control .file > input[type='file'] { width:215px; height:26px; filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity:0; opacity:0; position:absolute; top:0; left:0; cursor:pointer;}
+.img-control .button.green { margin:0 5px;}
+.img-control > .fyy-fr > .green { margin-left:10px;}
+.cancel:hover { text-decoration:underline;}
+
+    /* 文字编辑 */
+.text-edit { width:100%; background:#fff; position:absolute; right:0; top:30px; z-index:3; min-width:140px;}
+.text-input { border:1px solid #999; padding:10px;}
+.text-input > input[type='text'] { width:100%; height:24px; border:1px solid #aaa;}
+.text-control { text-align:right; height:26px; padding:7px 10px; border:1px solid #999; border-top:none;}
+.text-control > .green { margin-left:10px;}
+
+
+    /*编辑按钮支持*/
+.button { display:inline-block; *display:inline; *zoom:1; vertical-align:middle; padding:0 15px; height:26px; line-height:26px; color:#fff;}
+.button.green { background:#009852;}
+.button.green:hover { background:#11a963;}
+.button.green:active { background:#008741;}
+.button.gray { background:#eee; color:#333; height:24px; line-height:24px; padding:0 14px; border:1px solid #aaa;}
+.button.gray:hover { background:#fff;}
+.button.gray:active { background:#ddd;}
+.button.blue { background:#0070bc;}
+.button.blue:hover { background:#1c94e2;}
+.button.blue:active { background:#127cc2;}
+
+.qrCodeGuestDiv{ overflow:hidden;}
+.qrCodeGuestDiv.pc{ padding-top:20px; padding-bottom: 20px;}
+.qrCodeGuestDiv.pc h2{font-size: 0.8em;color: #0b82d0;}
+.qrCodeGuestImageDiv{ margin-top: 1.3em;float:left; box-sizing: border-box; width:50%; text-align: center;}
+.qrCodeGuestTextDiv{ float:left; box-sizing: border-box; width:50%; text-align: left;}
+.qrCodeGuestImageDiv p{ display: inline-block;height: 8em;width: 8em;max-width: 192px; max-height: 192px;}
+
+.scanQrCodeDiv{ padding: 1em 2em 0em 2em;}
+
+.showMessage * { box-sizing: content-box; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;}
+
+.sendBtn.senVer.on{ background:#ccc;}
+
+.black_overlay{ 
+    display: none; 
+    position: absolute; 
+    top: 0%; 
+    left: 0%; 
+    width: 100%; 
+    height: 100%; 
+    background-color: black; 
+    z-index:1001; 
+    -moz-opacity: 0.5; 
+    opacity:.50; 
+    filter: alpha(opacity=88); 
+} 
+
+.black_overlay div{
+    width:10%;
+    height:10%;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.black_overlay img{
+    margin: auto;
+}
